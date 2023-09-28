@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDc4Z6IAgTF1nUgiNoZat0M-oxZ2P0gRqk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>743494414965</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterCars</string>
+	<key>PROJECT_ID</key>
+	<string>flutter-cars-8733e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutter-cars-8733e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:743494414965:ios:9b8ad1a4543874964dbe3c</string>
+</dict>
+</plist>
