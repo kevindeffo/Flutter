@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cars/screens/Home/car_dialog.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddCarWidget extends StatelessWidget {
   final User? user;
-  const AddCarWidget({super.key, this.user});
+   AddCarWidget({super.key, this.user});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class AddCarWidget extends StatelessWidget {
                         width: 40,
                         margin: EdgeInsets.only(right: 10),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor.withOpacity(0.4),
+                          color: Theme.of(context).primaryColor.withOpacity(0.3),
                           shape: BoxShape.circle
                         ),
                         alignment: Alignment.center,
@@ -44,8 +48,11 @@ class AddCarWidget extends StatelessWidget {
                             shape: BoxShape.circle
                         ),
                         alignment: Alignment.center,
-                        child: Icon(Icons.add, size: 30,),
-                      )
+                        child: IconButton(
+                          onPressed: ()=>showCarDialog(context, user!),
+                          icon: const Icon(Icons.add, size: 30,),
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -55,5 +62,9 @@ class AddCarWidget extends StatelessWidget {
           ]
         )
     );
+  }
+
+  void showCarDialog(BuildContext context, User user){
+    CarDialog(user: user).showCarDialog(context, ImageSource.gallery);
   }
 }
