@@ -16,10 +16,13 @@ class HomeAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 10.0),
           child: GestureDetector(
-            onTap: ()=>Navigator.pushNamed(context, '/profile'),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(user!.photoURL!),
-              backgroundColor: Colors.grey,
+            onTap: () => Navigator.pushNamed(context, '/profile'),
+            child: Hero(
+              tag: user!.photoURL!,
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(user!.photoURL!),
+                backgroundColor: Colors.grey,
+              ),
             ),
           ),
         )

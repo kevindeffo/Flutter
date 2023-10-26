@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_cars/screens/shared_ui/show_snackbar.dart';
 import 'package:flutter_cars/services/auth.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,7 +12,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final GlobalKey<FormState> _homeKey = GlobalKey<FormState>(debugLabel: '_homeScreenkey');
+  final GlobalKey<FormState> _homeKey =
+      GlobalKey<FormState>(debugLabel: '_homeScreenkey');
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -49,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               !isLoading
                   ? ElevatedButton(
                       onPressed: () {
-                        signInWithGoogle();
+                        signInWithGoogle(context);
                       },
                       child: const Text("Se connecter avec Google"))
                   : const Center(
@@ -62,13 +66,20 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  signInWithGoogle() {
-    setState(() {
-      isLoading = true;
-      AuthService().signinWithGoogle().then((value) {
-        isLoading = false;
-        print("Valeur: $value");
-      });
-    });
+  signInWithGoogle(BuildContext context) async {
+    try {
+      final result = await InternetAddress.lookup("google.com");
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        setState(() {
+          isLoading = true;
+          AuthService().signinWithGoogle().then((value) {
+            isLoading = false;
+            print("Valeur: $value");
+          });
+        });
+      }
+    } on SocketException catch (_) {
+      showNotification(context, "Verifiez votre connexion internet");
+    }
   }
 }
