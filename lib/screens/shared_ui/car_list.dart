@@ -15,8 +15,7 @@ class CarList extends StatelessWidget {
   Widget build(BuildContext context) {
     final cars = Provider.of<List<Car>>(context);
     return SliverList(
-        delegate:
-            SliverChildBuilderDelegate(childCount: cars.length, (_, index) {
+        delegate: SliverChildBuilderDelegate(childCount: cars.length, (_, index) {
       return StreamBuilder(
         stream: DbService(userId: userId, carId: cars[index].id).myFavoriteCar,
         builder: (context, snapshot) {
@@ -25,8 +24,6 @@ class CarList extends StatelessWidget {
             cars[index].isMyFavoriteCar = true;
             return SingleCarWidget(userId: userId, car: cars[index]);
           }
-          print('----- snapshot -------');
-          print(snapshot.data);
           if (snapshot.hasData) {
             cars[index].isMyFavoriteCar = true;
             return SingleCarWidget(userId: userId, car: cars[index]);
@@ -36,7 +33,6 @@ class CarList extends StatelessWidget {
           }
         },
       );
-      // return SingleCarWidget(userId: userId, car: cars[index]);
     }));
   }
 }

@@ -29,7 +29,23 @@ class CarDetailsScreen extends StatelessWidget {
               ? IconButton(
                   onPressed: () => onDeleteCar(context, car),
                   icon: Icon(Icons.delete_forever_outlined))
-              : Container()
+              : IconButton(
+                  icon: Icon(
+                    car.likedBy!.contains(userId)
+                        ? Icons.thumb_up
+                        : Icons.thumb_up_alt_outlined,
+                    color: car.likedBy!.contains(userId)
+                        ? Colors.blue
+                        : Colors.grey,
+                  ),
+                  onPressed: () {
+                    if (car.likedBy!.contains(userId)) {
+                      DbService().unlikeCar(car.id!, userId);
+                    } else {
+                      DbService().likeCar(car.id!, userId);
+                    }
+                  },
+                )
         ],
       ),
       body: Center(
